@@ -1,5 +1,5 @@
 <?php 
-namespace Pages;
+namespace Pages\Site;
 
 class Listener extends \Prefab 
 {
