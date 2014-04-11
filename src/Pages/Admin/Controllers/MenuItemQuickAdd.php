@@ -13,13 +13,9 @@ class MenuItemQuickAdd extends \Admin\Controllers\BaseAuth
 		return $view->renderLayout('Pages/Admin/Views::quickadd/category.php');
 	}
 	
-	public function tag($event)
+	public function page($event)
 	{
-	    $model = new \Pages\Models\Pages;
-	    $tags = $model->getTags();
-	    \Base::instance()->set('tags', $tags );
-	
 	    $view = \Dsc\System::instance()->get('theme');
-	    return $view->renderLayout('Pages/Admin/Views::quickadd/tag.php');
+	    return $view->renderLayout('Pages/Admin/Views::quickadd/page.php');
 	}
 }

@@ -33,7 +33,7 @@ class Page extends \Dsc\Controller
     	\Base::instance()->set('item', $item );
     	
     	$view = \Dsc\System::instance()->get('theme');
-    	echo $view->render('Pages/Site/Views::pages/view.php');
+    	echo $view->renderTheme('Pages/Site/Views::pages/view.php');
     	 
     }
 }

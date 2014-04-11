@@ -59,32 +59,4 @@ class Pages extends \Dsc\Mongo\Collections\Content
         
         return parent::validate();
     }
-    
-    public function generateSlug( $unique=true )
-    {
-        if (empty($this->title)) {
-            $this->setError('A title is required for generating the slug');
-            return $this->checkErrors();
-        }        
-        
-        $created = date('Y-m-d');
-        if (!empty($this->{'created.time'})) {
-            $created = date('Y-m-d', $this->{'created.time'});
-        }
-
-        $slug = \Web::instance()->slug( $created . '-' . $this->title );
-        
-        if ($unique) 
-        {
-            $base_slug = $slug;
-            $n = 1;
-            while ($this->slugExists($slug))
-            {
-                $slug = $base_slug . '-' . $n;
-                $n++;
-            }
-        }
-    
-        return $slug;
-    }
 }

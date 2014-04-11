@@ -28,20 +28,15 @@ class Listener extends \Prefab
     {
         $items = $event->getArgument('items');
         $tree = $event->getArgument('tree');
-        
-        /*
+
         $item = new \stdClass;
-        $item->title = 'Pages Category';
-        $item->form = \Pages\Admin\Controllers\MenuItemQuickAdd::instance()->category($event);
+        $item->title = 'Pages';
+        $item->form = \Pages\Admin\Controllers\MenuItemQuickAdd::instance()->page($event);
         $items[] = $item;
         
         $item = new \stdClass;
-        $item->title = 'Pages Tag';
-        $item->form = \Pages\Admin\Controllers\MenuItemQuickAdd::instance()->tag($event);
-
-        */
-                
-        
+        $item->title = 'Pages Category';
+        $item->form = \Pages\Admin\Controllers\MenuItemQuickAdd::instance()->category($event);
         $items[] = $item;
         
         $event->setArgument('items', $items);
