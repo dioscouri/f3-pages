@@ -23,7 +23,7 @@
                 	jQuery.merge( form_data, [{ name: "category_ids[]", value: r.result._id['$id'] }] );
     
                     var request = jQuery.ajax({
-                        type: 'page', 
+                        type: 'post', 
                         url: './admin/pages/categories/checkboxes',
                         data: form_data
                     }).done(function(data){

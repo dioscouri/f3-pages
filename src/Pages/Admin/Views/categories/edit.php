@@ -1,6 +1,6 @@
 <div class="well">
 
-    <form id="detail-form" class="form" method="page">
+    <form id="detail-form" class="form" method="post">
         <div class="row">
             <div class="col-md-12">
             

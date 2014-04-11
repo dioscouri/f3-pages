@@ -13,7 +13,7 @@
     </div>
 </div>
 
-<form class="searchForm" method="page">
+<form class="searchForm" method="post">
 
     <div class="no-padding">
 

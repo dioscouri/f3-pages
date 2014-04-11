@@ -36,7 +36,7 @@ Dsc.refreshParents = function() {
 <div class="row">
     <div class="col-md-9">
         <div class="well">
-            <form id="categories" class="searchForm" action="./admin/pages/categories" method="page">
+            <form id="categories" class="searchForm" action="./admin/pages/categories" method="post">
                 <?php echo $this->renderLayout('Pages/Admin/Views::categories/list_datatable.php'); ?>
             </form>
         </div>
