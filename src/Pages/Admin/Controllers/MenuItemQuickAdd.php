@@ -5,7 +5,7 @@ class MenuItemQuickAdd extends \Admin\Controllers\BaseAuth
 {
 	public function category($event)
 	{
-		$model = \Pages\Models\Categories::instance();
+		$model = new \Pages\Models\Categories;
 		$categories = $model->getList();
 		\Base::instance()->set('categories', $categories );
 		

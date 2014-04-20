@@ -4,7 +4,7 @@ namespace Pages\Admin\Controllers;
 class Categories extends \Admin\Controllers\BaseAuth 
 {
     use \Dsc\Traits\Controllers\AdminList;
-
+		
     protected $list_route = '/admin/pages/categories';
 
     protected function getModel()
@@ -22,12 +22,7 @@ class Categories extends \Admin\Controllers\BaseAuth
         
         $state = $model->emptyState()->populateState()->getState();
         \Base::instance()->set('state', $state );
-        
-        $list = $model->paginate();
-        \Base::instance()->set('list', $list );
-        
-        $pagination = new \Dsc\Pagination($list['total'], $list['limit']);       
-        \Base::instance()->set('pagination', $pagination );
+        \Base::instance()->set( 'paginated', $model->paginate() );
         
         \Base::instance()->set('selected', 'null' );
         
@@ -42,12 +37,8 @@ class Categories extends \Admin\Controllers\BaseAuth
         $state = $model->populateState()->getState();
         \Base::instance()->set('state', $state );
         
-        $list = $model->paginate();
-        \Base::instance()->set('list', $list );
-        
-        $pagination = new \Dsc\Pagination($list['total'], $list['limit']);
-        \Base::instance()->set('pagination', $pagination );
-    
+        \Base::instance()->set( 'paginated', $model->paginate() );
+            
         $view = \Dsc\System::instance()->get('theme');
         $html = $view->renderLayout('Pages/Admin/Views::categories/list_datatable.php');
         
@@ -59,7 +50,7 @@ class Categories extends \Admin\Controllers\BaseAuth
     
     public function getAll()
     {
-        $model = $this->getModel();
+        $model = $this->getModel()->populateState();
         $categories = $model->getList();
         \Base::instance()->set('categories', $categories );
 
@@ -76,7 +67,7 @@ class Categories extends \Admin\Controllers\BaseAuth
     
     public function getCheckboxes()
     {
-        $model = $this->getModel();
+        $model = $this->getModel()->populateState();
         $categories = $model->getList();
         \Base::instance()->set('categories', $categories );
     

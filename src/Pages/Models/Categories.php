@@ -1,77 +1,45 @@
 <?php 
 namespace Pages\Models;
 
-class Categories extends \Dsc\Models\Categories 
+class Categories extends \Dsc\Mongo\Collections\Categories 
 {
-    protected $type = 'pages.categories';
+    protected $__type = 'pages.categories';
 
-    protected function fetchFilters()
+    protected function fetchConditions()
     {
-        $this->filters = parent::fetchFilters();
-    
-        $this->filters['type'] = $this->type;
-    
-        return $this->filters;
+        parent::fetchConditions();
+        
+        $this->setCondition( 'type', $this->__type );
+        
+        return $this;
     }
-    
-    public function update( $mapper, $values, $options=array() ) 
+
+    protected function beforeUpdate()
     {
-        // If the title of the category has changed, update all pages using this category
-        $doUpdate = false;
-        if ((!empty($values['title']) && $values['title'] != $mapper->title)
-        || ($values['slug'] != $mapper->slug)
-    	)
-        {
-            $doUpdate = true;
-        }
+        // If the title of the category has changed, update all products using this category
+        /*
+         * TODO Finish this if ((!empty($values['title']) && $values['title'] != $mapper->title) || ($values['slug'] != $mapper->slug) ) { $this->__update_products = true; }
+         */
         
-        $update = parent::update( $mapper, $values, $options );
-        
-        if ($doUpdate) 
-        {
-            $id = $update->id;
-            $title = $update->title;
-            $slug = $update->slug;
-            
-            // update the category in the Pages collection
-            $model = \Pages\Models\Pages::instance();
-            $collection = $model->getCollection();
-            $result = $collection->update(
-                    array('metadata.categories.id' => $id ),
-                    array(
-                            '$set' => array(
-                                    'metadata.categories.$.title' => $title,
-                            		'metadata.categories.$.slug' => $slug
-                            )
-                    ),
-                    array( 'multiple' => true )
-            );
-        }
-        
-        return $update;
+        parent::beforeUpdate();
     }
-    
-    public function delete( $mapper, $options=array() )
+
+    protected function afterUpdate()
     {
+        parent::afterUpdate();
+        
+        /*
+         * TODO Finish this if ($this->__update_products) { $id = $update->id; $title = $update->title; $slug = $update->slug; // update the category in the Products collection $model = \Shop\Admin\Models\Products::instance(); $collection = $model->getCollection(); $result = $collection->update( array('metadata.categories.id' => $id ), array( '$set' => array( 'metadata.categories.$.title' => $title, 'metadata.categories.$.slug' => $slug ) ), array( 'multiple' => true ) ); }
+         */
+    }
+
+    protected function afterDelete()
+    {
+        parent::afterDelete();
+        
         // If a category is deleted, remove it from any nested 'categories' documents
-        $id = $mapper->id;
-        
-        if ($delete = parent::delete( $mapper, $options )) 
-        {
-            // delete the category from the Pages collection
-            $model = \Pages\Models\Pages::instance();
-            $collection = $model->getCollection();
-            $result = $collection->update(
-                    array('metadata.categories.id' => $id ),
-                    array(
-                            '$pull' => array(
-                                    'metadata.categories' => array( 'id' => $id )
-                            )
-                    ),
-                    array( 'multiple' => true )
-            );            
-        }
-        
-        return $delete;
+        /*
+         * $id = $this->id; $model = \Shop\Admin\Models\Products::instance(); $collection = $model->getCollection(); $result = $collection->update( array('metadata.categories.id' => $id ), array( '$pull' => array( 'metadata.categories' => array( 'id' => $id ) ) ), array( 'multiple' => true ) );
+         */
     }
 }
