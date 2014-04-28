@@ -30,7 +30,7 @@
                         var lr = jQuery.parseJSON( JSON.stringify(data), false);
                         if (lr.result) {
                             jQuery('#categories-checkboxes').html(lr.result);
-                            App.initICheck();
+                            CustomApp.initICheck();
                         }
                     });
                 }

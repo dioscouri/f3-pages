@@ -11,12 +11,15 @@ class Routes extends \Dsc\Routes\Group
         ) );
         
         $this->addSettingsRoutes();
+        
         $this->addCrudGroup( 'Pages', 'Page' );
+        
         $this->addCrudGroup( 'Categories', 'Category', array(
             'datatable_links' => true,
             'get_parent_link' => true 
         ) );
-        $this->add( '/checkboxes', array(
+        
+        $this->add( '/categories/checkboxes', array(
             'GET',
             'POST' 
         ), array(
