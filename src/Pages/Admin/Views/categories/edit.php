@@ -26,7 +26,7 @@
                         </div>
                             
                         &nbsp;
-                        <a class="btn btn-default" href="./admin/pages/categories">Cancel</a>
+                        <a class="btn btn-default" href="/admin/pages/categories">Cancel</a>
                     </div>
     
                 </div>
