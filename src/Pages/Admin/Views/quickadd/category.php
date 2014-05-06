@@ -1,11 +1,11 @@
-<form class="form-horizontal" action="/admin/menu/create" method="post">
+<form class="form-horizontal" action="./admin/menu/create" method="post">
 	<div class="form-group">
 		<label for="link-url" class="col-sm-4 control-label">Category</label>
 		<div class="col-sm-8">
 			<?php if (!empty($categories)) { ?>
 			<select name="details[url]" class="form-control">
 			<?php foreach ($categories as $one) { ?>
-			    <option value="/pages/category/<?php echo $one->slug; ?>">
+			    <option value="./pages/category/<?php echo $one->slug; ?>">
 			    	<?php echo @str_repeat( "&ndash;", substr_count( @$one->path, "/" ) - 1 ) . " " . $one->title; ?>
 			    </option>                    
 			<?php } ?> 

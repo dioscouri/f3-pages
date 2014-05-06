@@ -2,7 +2,7 @@
 Dsc.refreshParents = function() {
     var request = jQuery.ajax({
         type: 'get', 
-        url: '/admin/pages/categories/all'
+        url: './admin/pages/categories/all'
     }).done(function(data){
         var lr = jQuery.parseJSON( JSON.stringify(data), false);
         if (lr.result) {
@@ -36,7 +36,7 @@ Dsc.refreshParents = function() {
 <div class="row">
     <div class="col-md-9">
         <div class="well">
-            <form id="categories" class="searchForm" action="/admin/pages/categories" method="post">
+            <form id="categories" class="searchForm" action="./admin/pages/categories" method="post">
                 <?php echo $this->renderLayout('Pages/Admin/Views::categories/list_datatable.php'); ?>
             </form>
         </div>

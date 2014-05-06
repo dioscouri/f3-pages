@@ -32,7 +32,7 @@
 
                 <div class="tab-pane fade in active" id="tab-home">
                     <h3 class="">Home View Settings</h3>
-                    <p class="help-block">The home view is the 'landing page' for your pages, available at <a href="/pages" target="_blank">/pages</a>.  It will include the latest pages from all your categories.</p>
+                    <p class="help-block">The home view is the 'landing page' for your pages, available at <a href="./pages" target="_blank">/pages</a>.  It will include the latest pages from all your categories.</p>
                     <hr/>
                     
                     <div class="form-group">

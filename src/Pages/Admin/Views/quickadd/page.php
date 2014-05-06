@@ -1,11 +1,11 @@
-<form class="form-horizontal" action="/admin/menu/create" method="post">
+<form class="form-horizontal" action="./admin/menu/create" method="post">
 	<div class="form-group">
 		<label for="link-url" class="col-sm-4 control-label">Page</label>
 		<div class="col-sm-8">
 			
 			<select name="details[url]" class="form-control">
 			<?php foreach ((new \Pages\Models\Pages)->collection()->find(array('type'=>'pages.pages'))->sort(array('title'=>1)) as $doc) { ?>
-			    <option value="/pages/<?php echo $doc['slug']; ?>">
+			    <option value="./pages/<?php echo $doc['slug']; ?>">
 			    	<?php echo $doc['title']; ?>
 			    </option>
 			<?php } ?> 

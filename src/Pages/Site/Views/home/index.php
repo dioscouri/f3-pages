@@ -5,14 +5,14 @@
         <?php if (!empty($paginated->items)) { ?>
     
         <?php foreach($paginated->items as $item) { 
-            $item->_url = '/pages/page/' . $item->slug; 
+            $item->_url = './pages/page/' . $item->slug; 
         ?>
         <article id="page-<?php echo $item->id; ?>" class="page-<?php echo $item->id; ?>">
 
             <div class="entry-header">
                 <?php if ($item->{'featured_image.slug'}) { ?>
                 <a href="<?php echo $item->_url; ?>">
-                <img class="entry-featured img-responsive" width="100%" src="/asset/<?php echo $item->{'featured_image.slug'} ?>">
+                <img class="entry-featured img-responsive" width="100%" src="./asset/<?php echo $item->{'featured_image.slug'} ?>">
                 </a>
                 <?php } ?>
             
@@ -32,7 +32,7 @@
                     /
                     <span class="byline">
                         <span class="author vcard">
-                            <a class="url fn n" href="/pages/author/<?php echo $item->{'metadata.creator.id'}; ?>"
+                            <a class="url fn n" href="./pages/author/<?php echo $item->{'metadata.creator.id'}; ?>"
                                 title="View all pages by <?php echo $item->{'metadata.creator.name'}; ?>" rel="author"><?php echo $item->{'metadata.creator.name'}; ?></a>
                         </span>
                     </span>
@@ -44,7 +44,7 @@
                     <?php if (!empty($item->{'tags'})) { ?>
                     <p class="tag-links">
                         <?php foreach ($item->{'tags'} as $tag) { ?>
-                        <a class="label label-info" href="/pages/tag/<?php echo $tag; ?>" rel="tag"><?php echo $tag; ?></a>
+                        <a class="label label-info" href="./pages/tag/<?php echo $tag; ?>" rel="tag"><?php echo $tag; ?></a>
                         <?php } ?>
                     </p>
                     <?php } ?>
@@ -60,7 +60,7 @@
                 <?php if (!empty($item->{'categories'})) { ?>
                 <p class="cat-links">
                     <?php foreach ($item->{'categories'} as $category) { ?>
-                    <a class="label label-primary" href="/pages/category/<?php echo $category['slug']; ?>"
+                    <a class="label label-primary" href="./pages/category/<?php echo $category['slug']; ?>"
                         title="View all pages in <?php echo $category['title']; ?>" rel="category tag"><?php echo $category['title']; ?></a>
                     <?php } ?>
                 </p>
