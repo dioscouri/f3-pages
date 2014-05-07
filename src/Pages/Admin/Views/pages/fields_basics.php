@@ -10,13 +10,15 @@
     <div class="col-md-10">
 
         <div class="form-group">
+            <label>Title</label>
             <input type="text" name="title" placeholder="Title" value="<?php echo $flash->old('title'); ?>" class="form-control" />
-            <?php if ($flash->old('slug')) { ?>
-                <p class="help-block">
-                <label>Slug:</label>
-                <input type="text" name="slug" value="<?php echo $flash->old('slug'); ?>" class="form-control" />
-                </p>
-            <?php } ?>
+        </div>
+        <!-- /.form-group -->
+
+        <div class="form-group">
+            <label>Slug</label>
+            <input type="text" name="slug" value="<?php echo $flash->old('slug'); ?>" class="form-control" />
+            <p class="help-block">This determines the page's URL<?php if ($flash->old('slug')) { ?>, which is currently <a target="_blank" href="./pages/<?php echo $flash->old('slug'); ?>">/pages/<?php echo $flash->old('slug'); ?></a><?php } ?>
         </div>
         <!-- /.form-group -->
         
