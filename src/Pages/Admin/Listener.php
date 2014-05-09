@@ -5,20 +5,29 @@ class Listener extends \Prefab
 {
     public function onSystemRebuildMenu( $event )
     {
-        if ($mapper = $event->getArgument('mapper')) 
-        {
-            $mapper->reset();
-            $mapper->priority = 30;
-            $mapper->id = 'f3-pages';
-            $mapper->title = 'Pages';
-            $mapper->route = '';
-            $mapper->icon = 'fa fa-file-text';
-            $mapper->children = array(
-                    json_decode(json_encode(array( 'title'=>'Pages', 'route'=>'/admin/pages/pages', 'icon'=>'fa fa-list' )))
-                    ,json_decode(json_encode(array( 'title'=>'Categories', 'route'=>'/admin/pages/categories', 'icon'=>'fa fa-folder' )))
-                    //,json_decode(json_encode(array( 'title'=>'Settings', 'route'=>'/admin/pages/settings', 'icon'=>'fa fa-cogs' )))
+    	if ($model = $event->getArgument('model'))
+    	{
+    		$root = $event->getArgument( 'root' );
+    		$pages = clone $model;
+    	
+    		$pages->insert(
+    				array(
+    						'type'	=> 'admin.nav',
+    						'priority' => 40,
+    						'title'	=> 'Pages',
+    						'icon'	=> 'fa fa-file-text',
+        					'is_root' => false,
+    						'tree'	=> $root,
+							'base' => '/admin/pages',
+    				)
+    		);
+    		
+            $children = array(
+                    array( 'title'=>'Pages', 'route'=>'/admin/pages/pages', 'icon'=>'fa fa-list' ),
+                    array( 'title'=>'Categories', 'route'=>'/admin/pages/categories', 'icon'=>'fa fa-folder' ),
+                    //array( 'title'=>'Settings', 'route'=>'/admin/pages/settings', 'icon'=>'fa fa-cogs' ),
             );
-            $mapper->save();
+           	$pages->addChildrenItems( $children, $root, $model );
             
             \Dsc\System::instance()->addMessage('Pages added its admin menu items.');
         }
