@@ -3,7 +3,17 @@ namespace Pages\Admin\Controllers;
 
 class Pages extends \Admin\Controllers\BaseAuth 
 {
-    public function index()
+    use \Dsc\Traits\Controllers\AdminList;
+		
+    protected $list_route = '/admin/pages/pages';
+
+    protected function getModel()
+    {
+        $model = new \Pages\Models\Pages;
+        return $model;
+    }
+	
+	public function index()
     {
         // when ACL is ready
         //$this->checkAccess( __CLASS__, __FUNCTION__ );
@@ -11,7 +21,7 @@ class Pages extends \Admin\Controllers\BaseAuth
         \Base::instance()->set('pagetitle', 'Pages');
         \Base::instance()->set('subtitle', '');
         
-        $model = new \Pages\Models\Pages;
+        $model = $this->getModel();
         $state = $model->populateState()->getState();
         \Base::instance()->set('state', $state );
         
