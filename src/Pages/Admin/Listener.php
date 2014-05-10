@@ -27,7 +27,7 @@ class Listener extends \Prefab
                     array( 'title'=>'Categories', 'route'=>'/admin/pages/categories', 'icon'=>'fa fa-folder' ),
                     //array( 'title'=>'Settings', 'route'=>'/admin/pages/settings', 'icon'=>'fa fa-cogs' ),
             );
-           	$pages->addChildrenItems( $children, $root, $model );
+           	$pages->addChildrenItems( $children, $root );
             
             \Dsc\System::instance()->addMessage('Pages added its admin menu items.');
         }
