@@ -38,8 +38,8 @@ class Pages extends \Admin\Controllers\BaseAuth
         
         $categories_db = (array) $this->getModel( "categories" )->getItems();
         $categories = array(
-        	array( 'text' => ' ', 'value' => ' ' ),
-       		array( 'text' => '-- Uncategorized --', 'value' => '--' ),
+        	array( 'text' => '-- No Filter --', 'value' => ' ' ),
+       		array( 'text' => '- Uncategorized -', 'value' => '--' ),
         );
         array_walk( $categories_db, function($cat) use(&$categories) {
         	$categories []= array(
@@ -51,8 +51,8 @@ class Pages extends \Admin\Controllers\BaseAuth
         \Base::instance()->set('categories', $categories );
         
         $all_tags = array(
-       		array( 'text' => ' ', 'value' => ' ' ),
-       		array( 'text' => '-- Untagged --', 'value' => '--' ),
+       		array( 'text' => '-- No Filter --', 'value' => ' ' ),
+       		array( 'text' => '- Untagged -', 'value' => '--' ),
         );
         $tags = (array) $this->getModel()->getTags();
         array_walk( $tags, function($tag) use(&$all_tags) {
