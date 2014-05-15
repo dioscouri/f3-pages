@@ -14,12 +14,15 @@ class Pages extends \Dsc\Mongo\Collections\Content
         
         $this->setCondition('type', $this->__type );
         
-        $filter_category_slug = $this->getState('filter.category.slug');
+        $filter_category_slug = trim( $this->getState('filter.category.slug') );
         if (strlen($filter_category_slug))
         {
-            $this->setCondition('categories.slug', $filter_category_slug );
+        	if( $filter_category_slug == '--' ){
+        		$this->setCondition('categories', array( '$size' => 0 ) );
+        	} else {
+        		$this->setCondition('categories.slug', $filter_category_slug );
+        	}
         }
-
         return $this;
     }
     

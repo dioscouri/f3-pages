@@ -1,3 +1,11 @@
+<script type="text/javascript">
+jQuery(function(jQuery) { 
+	jQuery("select[data-select]").on('change', function(){
+		form.submit();
+		}).select2();
+});
+
+</script>
 <div class="row">
     <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
         <h1 class="page-title txt-color-blueDark">
@@ -92,13 +100,34 @@
                 <thead>
                     <tr>
                         <th class="checkbox-column"><input type="checkbox" class="icheck-input"></th>
-                        <th data-sortable="metadata.title">Title</th>
+                        <th data-sortable="title">Title</th>
                         <th>Author</th>
                         <th>Categories</th>
                         <th>Tags</th>
                         <th data-sortable="publication.start_date">Publication</th>
                         <th class="col-md-1"></th>
                     </tr>
+                    <tr>
+	                    <th>&nbsp;</th>
+                    	<th>&nbsp;</th>
+                		<th>&nbsp;</th>
+                    	<th>
+                   			<select name="filter[category][slug]" data-select='1'>
+<?php 
+	echo \Dsc\Html\Select::options($categories, $state->get('filter.category.slug'));
+?>                    			
+                   			</select>
+                    	</th>
+	                    <th class="col-md-2">
+                   			<select name="filter[tags]" data-select='1'>
+<?php 
+	echo \Dsc\Html\Select::options($all_tags, $state->get('filter.tags'));
+?>                    			
+                   			</select>
+	                    </th>
+                    	<th></th>
+	                    <th></th>
+                   	</tr>
                 </thead>
                 <tbody>    
             
