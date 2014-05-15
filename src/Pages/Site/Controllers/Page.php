@@ -11,7 +11,8 @@ class Page extends \Dsc\Controller
     
     public function read()
     {
-    	// TODO get the slug param.  lookup the pages page.  Check ACL against page.
+    	// TODO Check ACL against page.
+    	
     	$f3 = \Base::instance();
     	$slug = $this->inputfilter->clean( $f3->get('PARAMS.slug'), 'cmd' );
     	$model = $this->getModel()->populateState()
@@ -21,18 +22,16 @@ class Page extends \Dsc\Controller
     	    	
     	try {
     		$item = $model->getItem();
+    		
+    		if (empty($item->id))
+    		{
+    		    throw new \Exception;
+    		}
+    		
     	} catch ( \Exception $e ) {
-    	    // TODO Change to a normal 404 error
-    		\Dsc\System::instance()->addMessage( "Invalid Item: " . $e->getMessage(), 'error');
+    		\Dsc\System::instance()->addMessage( "Invalid Item", 'error');
     		$f3->reroute( '/' );
     		return;
-    	}
-
-    	if( empty( $item ) ){
-    	    // TODO Change to a normal 404 error
-    	    \Dsc\System::instance()->addMessage( "Invalid Page", 'error');
-    	    $f3->reroute( '/' );
-    	    return;
     	}
     	 
     	\Base::instance()->set('pagetitle', $item->title);
@@ -42,6 +41,5 @@ class Page extends \Dsc\Controller
     	
     	$view = \Dsc\System::instance()->get('theme');
     	echo $view->renderTheme('Pages/Site/Views::pages/view.php');
-    	 
     }
 }
