@@ -33,11 +33,10 @@ class Page extends \Dsc\Controller
     		$f3->reroute( '/' );
     		return;
     	}
-    	 
-    	\Base::instance()->set('pagetitle', $item->title);
-    	\Base::instance()->set('subtitle', '');
     	
     	\Base::instance()->set('item', $item );
+    	
+    	$this->app->set('meta.title', $item->title);
     	
     	$view = \Dsc\System::instance()->get('theme');
     	echo $view->renderTheme('Pages/Site/Views::pages/view.php');

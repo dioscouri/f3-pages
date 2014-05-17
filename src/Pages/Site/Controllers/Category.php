@@ -11,31 +11,37 @@ class Category extends \Dsc\Controller
     
     public function index()
     {
-    	// TODO get the slug param.  lookup the category.  Check ACL against both category.
-    	// get paginated list of pages pages associated with this category
-    	// only pages that are published as of now
-    	
     	$f3 = \Base::instance();
-    	$slug = $this->inputfilter->clean( $f3->get('PARAMS.slug'), 'cmd' );
-    	$model = $this->getModel()->populateState()
-            ->setState('filter.category.slug', $slug);
+    	
+    	$param = $this->inputfilter->clean( $f3->get('PARAMS.1'), 'string' );
+    	$pieces = explode('?', $param);
+    	$path = $pieces[0];
     	
     	try {
-    		$paginated = $model->paginate();
-    	} catch ( \Exception $e ) {
-    	    // TODO Change to a normal 404 error
-    		\Dsc\System::instance()->addMessage( "Invalid Items: " . $e->getMessage(), 'error');
+    	    $category = (new \Pages\Models\Categories)->setState('filter.path', $path)->getItem();
+    	    if (empty($category->id)) {
+    	        throw new \Exception;
+    	    }
+    	        	    
+    		$paginated = $products_model->populateState()
+    		      ->setState('filter.category.id', $category->id)
+    		      ->setState('filter.publication_status', 'published')
+    		      ->setState('filter.published_today', true)
+    		      ->paginate();
+    		
+    	} 
+    	catch ( \Exception $e ) 
+    	{
+    		\Dsc\System::instance()->addMessage( "Invalid Items", 'error');
     		$f3->reroute( '/' );
     		return;
     	}
     	
-    	\Base::instance()->set('pagetitle', 'Pages');
-    	\Base::instance()->set('subtitle', '');
-    	
     	$state = $model->getState();
     	\Base::instance()->set('state', $state );
-    	
         \Base::instance()->set('paginated', $paginated );
+        
+        $this->app->set('meta.title', $category->title . ' | Pages');
     	
     	$view = \Dsc\System::instance()->get('theme');
     	echo $view->render('Pages/Site/Views::pages/category.php');

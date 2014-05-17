@@ -15,12 +15,12 @@ class Routes extends \Dsc\Routes\Group
             'action' => 'read' 
         ) );
         
-        $this->add( '/category/@slug', 'GET', array(
+        $this->add( '/category/*', 'GET', array(
             'controller' => 'Category',
             'action' => 'index' 
         ) );
         
-        $this->add( '/category/@slug/@page', 'GET', array(
+        $this->add( '/category/*/page/@page', 'GET', array(
             'controller' => 'Category',
             'action' => 'index' 
         ) );
@@ -30,7 +30,7 @@ class Routes extends \Dsc\Routes\Group
             'action' => 'index' 
         ) );
         
-        $this->add( '/tag/@tag/@page', 'GET', array(
+        $this->add( '/tag/@tag/page/@page', 'GET', array(
             'controller' => 'Tag',
             'action' => 'index' 
         ) );
@@ -40,7 +40,7 @@ class Routes extends \Dsc\Routes\Group
             'action' => 'index' 
         ) );
         
-        $this->add( '/author/@id/@page', 'GET', array(
+        $this->add( '/author/@id/page/@page', 'GET', array(
             'controller' => 'Author',
             'action' => 'index' 
         ) );

@@ -21,21 +21,23 @@ class Author extends \Dsc\Controller
             ->setState('filter.creator.id', $id);
     	
     	try {
+    	    $author = (new \Users\Models\Users)->setState('filter.id', $id)->getItem();
+    	    if (empty($author->id)) {
+    	    	throw new \Exception;
+    	    }
+    	    
     		$paginated = $model->paginate();
     	} catch ( \Exception $e ) {
-    	    // TODO Change to a normal 404 error
-    		\Dsc\System::instance()->addMessage( "Invalid Items: " . $e->getMessage(), 'error');
+    		\Dsc\System::instance()->addMessage( "Invalid Items", 'error');
     		$f3->reroute( '/' );
     		return;
     	}
     	
-    	\Base::instance()->set('pagetitle', 'Pages');
-    	\Base::instance()->set('subtitle', '');
-    	
     	$state = $model->getState();
-    	\Base::instance()->set('state', $state );
-    	
+    	\Base::instance()->set('state', $state );    	
     	\Base::instance()->set('paginated', $paginated );
+    	
+    	$this->app->set('meta.title', 'Pages by ' . $author->fullName() );
     	
     	$view = \Dsc\System::instance()->get('theme');
     	echo $view->render('Pages/Site/Views::pages/category.php');
