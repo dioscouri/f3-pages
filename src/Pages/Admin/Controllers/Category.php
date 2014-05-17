@@ -37,13 +37,13 @@ class Category extends \Admin\Controllers\BaseAuth
     protected function displayCreate() 
     {
         $f3 = \Base::instance();
-        $f3->set('pagetitle', 'Edit Category');
 
         $model = new \Pages\Models\Categories;
         $all = $model->emptyState()->getList();
         \Base::instance()->set('all', $all );
-        
         \Base::instance()->set('selected', null );
+        
+        $this->app->set('meta.title', 'Create Category | Pages');
         
         $view = \Dsc\System::instance()->get('theme');
         echo $view->render('Pages/Admin/Views::categories/create.php');        
@@ -52,7 +52,6 @@ class Category extends \Admin\Controllers\BaseAuth
     protected function displayEdit()
     {
         $f3 = \Base::instance();
-        $f3->set('pagetitle', 'Edit Category');
 
         $model = new \Pages\Models\Categories;
         $categories = $model->emptyState()->getList();
@@ -61,6 +60,8 @@ class Category extends \Admin\Controllers\BaseAuth
         $flash = \Dsc\Flash::instance();
         $selected = $flash->old('parent');
         \Base::instance()->set('selected', $selected );
+
+        $this->app->set('meta.title', 'Edit Category | Pages');
         
         $view = \Dsc\System::instance()->get('theme');
         echo $view->render('Pages/Admin/Views::categories/edit.php');

@@ -26,9 +26,6 @@ class Pages extends \Admin\Controllers\BaseAuth
         // when ACL is ready
         //$this->checkAccess( __CLASS__, __FUNCTION__ );
         
-        \Base::instance()->set('pagetitle', 'Pages');
-        \Base::instance()->set('subtitle', '');
-        
         $model = $this->getModel();
         $state = $model->populateState()->getState();
         \Base::instance()->set('state', $state );
@@ -63,6 +60,8 @@ class Pages extends \Admin\Controllers\BaseAuth
         } );
 
         \Base::instance()->set('all_tags', $all_tags );
+        
+        $this->app->set('meta.title', 'Pages');
         
         $view = \Dsc\System::instance()->get('theme');
         echo $view->render('Pages/Admin/Views::pages/list.php');

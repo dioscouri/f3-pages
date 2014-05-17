@@ -37,7 +37,6 @@ class Page extends \Admin\Controllers\BaseAuth
     protected function displayCreate() 
     {
         $f3 = \Base::instance();
-        $f3->set('pagetitle', 'Create Page');
         
         $model = new \Pages\Models\Categories;
         $categories = $model->getList();
@@ -62,6 +61,8 @@ class Page extends \Admin\Controllers\BaseAuth
         $all_tags = $this->getModel()->getTags();
         \Base::instance()->set('all_tags', $all_tags );
         
+        $this->app->set('meta.title', 'Create Page');
+        
         $view = \Dsc\System::instance()->get('theme');
         echo $view->render('Pages/Admin/Views::pages/create.php');
     }
@@ -69,7 +70,6 @@ class Page extends \Admin\Controllers\BaseAuth
     protected function displayEdit()
     {
         $f3 = \Base::instance();
-        $f3->set('pagetitle', 'Edit Page');
 
         $model = new \Pages\Models\Categories;
         $categories = $model->getList();
@@ -78,6 +78,8 @@ class Page extends \Admin\Controllers\BaseAuth
         
         $all_tags = $this->getModel()->getTags();
         \Base::instance()->set('all_tags', $all_tags );
+        
+        $this->app->set('meta.title', 'Edit Page');
         
         $view = \Dsc\System::instance()->get('theme');
         echo $view->render('Pages/Admin/Views::pages/edit.php');
