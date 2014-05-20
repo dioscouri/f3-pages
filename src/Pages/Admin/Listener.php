@@ -24,12 +24,12 @@ class Listener extends \Prefab
             $children = array(
                 array(
                     'title' => 'Pages',
-                    'route' => '/admin/pages/pages',
+                    'route' => './admin/pages/pages',
                     'icon' => 'fa fa-list'
                 ),
                 array(
                     'title' => 'Categories',
-                    'route' => '/admin/pages/categories',
+                    'route' => './admin/pages/categories',
                     'icon' => 'fa fa-folder'
                 )
             );
