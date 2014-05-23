@@ -39,6 +39,9 @@ class Page extends \Dsc\Controller
     	$this->app->set('meta.title', $item->title);
     	
     	$view = \Dsc\System::instance()->get('theme');
-    	echo $view->renderTheme('Pages/Site/Views::pages/view.php');
+    	
+    	$view_file = $item->{'display.view'} ? 'view/' . $item->{'display.view'} : 'view.php'; 
+    	
+    	echo $view->renderTheme('Pages/Site/Views::pages/' . $view_file);
     }
 }

@@ -42,6 +42,9 @@ jQuery(document).ready(function(){
         </li>
         <li>
             <a href="#tab-images" data-toggle="tab"> Images </a>
+        </li>
+        <li>
+            <a href="#tab-display" data-toggle="tab"> Display </a>
         </li>        
         <?php if (!empty($this->event)) { foreach ((array) $this->event->getArgument('tabs') as $key => $title ) { ?>
         <li>
@@ -62,6 +65,13 @@ jQuery(document).ready(function(){
         <div class="tab-pane" id="tab-images">
 
             <?php echo $this->renderLayout('Pages/Admin/Views::pages/fields_images.php'); ?>
+                                
+        </div>
+        <!-- /.tab-pane -->
+        
+        <div class="tab-pane" id="tab-display">
+
+            <?php echo $this->renderLayout('Pages/Admin/Views::pages/fields_display.php'); ?>
                                 
         </div>
         <!-- /.tab-pane -->
