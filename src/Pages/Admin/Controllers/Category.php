@@ -3,7 +3,7 @@ namespace Pages\Admin\Controllers;
 
 class Category extends \Admin\Controllers\BaseAuth 
 {
-    use \Dsc\Traits\Controllers\CrudItem;
+    use \Dsc\Traits\Controllers\CrudItemCollection;
 
     protected $list_route = '/admin/pages/categories';
     protected $create_item_route = '/admin/pages/category/create';

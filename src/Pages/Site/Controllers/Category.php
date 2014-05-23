@@ -45,6 +45,10 @@ class Category extends \Dsc\Controller
         $this->app->set('meta.title', $category->title . ' | Pages');
         
         $view = \Dsc\System::instance()->get('theme');
-        echo $view->render('Pages/Site/Views::categories/index.php');
+        $view_file = 'index.php';
+        if ($category->{'display.view'} && $view->findViewFile( 'Pages/Site/Views::pages/index/' . $category->{'display.view'} )) {
+            $view_file = 'index/' . $category->{'display.view'};
+        }
+        echo $view->render('Pages/Site/Views::categories/' . $view_file);
     }
 }
