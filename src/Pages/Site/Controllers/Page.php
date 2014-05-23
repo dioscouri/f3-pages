@@ -40,7 +40,10 @@ class Page extends \Dsc\Controller
     	
     	$view = \Dsc\System::instance()->get('theme');
     	
-    	$view_file = $item->{'display.view'} ? 'view/' . $item->{'display.view'} : 'view.php'; 
+    	$view_file = 'view.php';
+    	if ($item->{'display.view'} && $view->findViewFile( 'Pages/Site/Views::pages/view/' . $item->{'display.view'} )) {
+    		$view_file = 'view/' . $item->{'display.view'};
+    	} 
     	
     	echo $view->renderTheme('Pages/Site/Views::pages/' . $view_file);
     }
