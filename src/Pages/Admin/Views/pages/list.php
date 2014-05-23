@@ -148,27 +148,26 @@ jQuery(function(jQuery) {
 		                        		</div>
                         			</div>
                         			<div class="row">
-		                        		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-		                        			<div><h5>Basic</h5></div>
+		                        		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
 		                        			<div>
-		                        				<label>/<?php echo $item->slug; ?></label>
+		                        				<label>Slug:</label> <a target="_blank" href="./pages/<?php echo $item->slug; ?>">/<?php echo $item->slug; ?> <i class="fa fa-external-link"></i></a>
 		                        			</div>
-		                        			<div>
-		                        				<label>Author:</label> <a href="./admin/user/edit/<?php echo $item->{'author.id'}?>" title="<?php echo $item->{'author.name'}; ?>"><?php echo $item->{'author.name'}; ?></a>
-		                        			</div>
-		                        			<div>
-			                        			<?php $categories = \Joomla\Utilities\ArrayHelper::getColumn( (array) $item->categories, 'title' ); ?>
+		                        			<?php $categories = \Joomla\Utilities\ArrayHelper::getColumn( (array) $item->categories, 'title' ); ?>
+		                        			<?php if ($categories) { ?>
+		                        			<div>			                        			
 		                        				<label>Categories:</label>
 												<span class='label label-warning'><?php echo implode("</span> <span class='label label-warning'>", (array) $categories ); ?></span>
 		                        			</div>
+		                        			<?php } ?>
+		                        			<?php if ($item->tags) { ?>
 		                        			<div>
 		                        				<label>Tags:</label>
 												<span class='label label-success'><?php echo implode("</span> <span class='label label-success'>", (array) $item->tags); ?></span>
 		                        			</div>
+		                        			<?php } ?>
 		                        		</div>
 		                        		
-		                        		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-		                        			<h5>Publication</h5>
+		                        		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
 				                            <div>
 				                            	<label>Status:</label> <?php echo ucwords( $item->{'publication.status'} ); ?>
 				                            </div>
@@ -180,6 +179,14 @@ jQuery(function(jQuery) {
 				                            <?php if ($item->{'publication.end_date'}) { ?>
 				                            <div>
 				                            	<label>Down:</label> <?php echo $item->{'publication.end_date'}; ?>
+				                            </div>
+				                            <?php } ?>
+		                        		</div>
+		                        		
+		                        		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+		                        		    <?php if ($item->{'display.view'}) { ?>
+				                            <div>
+				                            	<label>Display:</label> <span class="label label-default"><?php echo $item->{'display.view'}; ?></span>
 				                            </div>
 				                            <?php } ?>
 		                        		</div>

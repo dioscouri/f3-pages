@@ -38,6 +38,8 @@ class Page extends \Admin\Controllers\BaseAuth
     {
         $f3 = \Base::instance();
         
+        $item = $this->getItem();
+        
         $model = new \Pages\Models\Categories;
         $categories = $model->getList();
         \Base::instance()->set('categories', $categories );
@@ -64,6 +66,8 @@ class Page extends \Admin\Controllers\BaseAuth
         $this->app->set('meta.title', 'Create Page');
         
         $view = \Dsc\System::instance()->get('theme');
+        $view->event = $view->trigger( 'onDisplayPagesEdit', array( 'item' => $item, 'tabs' => array(), 'content' => array() ) );
+        
         echo $view->render('Pages/Admin/Views::pages/create.php');
     }
     
@@ -71,6 +75,8 @@ class Page extends \Admin\Controllers\BaseAuth
     {
         $f3 = \Base::instance();
 
+        $item = $this->getItem();
+        
         $model = new \Pages\Models\Categories;
         $categories = $model->getList();
         \Base::instance()->set('categories', $categories );
@@ -82,6 +88,8 @@ class Page extends \Admin\Controllers\BaseAuth
         $this->app->set('meta.title', 'Edit Page');
         
         $view = \Dsc\System::instance()->get('theme');
+        $view->event = $view->trigger( 'onDisplayPagesEdit', array( 'item' => $item, 'tabs' => array(), 'content' => array() ) );
+        
         echo $view->render('Pages/Admin/Views::pages/edit.php');
     }
     

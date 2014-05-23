@@ -46,7 +46,7 @@ class Category extends \Dsc\Controller
         
         $view = \Dsc\System::instance()->get('theme');
         $view_file = 'index.php';
-        if ($category->{'display.view'} && $view->findViewFile( 'Pages/Site/Views::pages/index/' . $category->{'display.view'} )) {
+        if ($category->{'display.view'} && $view->findViewFile( 'Pages/Site/Views::categories/index/' . $category->{'display.view'} )) {
             $view_file = 'index/' . $category->{'display.view'};
         }
         echo $view->render('Pages/Site/Views::categories/' . $view_file);
