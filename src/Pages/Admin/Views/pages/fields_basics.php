@@ -43,7 +43,3 @@
 <hr />
 
 <?php echo $this->renderLayout('Pages/Admin/Views::pages/fields_basics_tags.php'); ?>
-
-<hr />
-
-<?php echo $this->renderLayout('Pages/Admin/Views::pages/fields_basics_featuredimage.php'); ?>

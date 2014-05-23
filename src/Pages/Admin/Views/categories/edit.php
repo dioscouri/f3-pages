@@ -33,7 +33,11 @@
                 <!-- /.form-actions -->
                 
                 <hr/>
-            
+                
+                <div class="alert alert-info">
+                    <p><b>URL:</b> <a href="./pages/category<?php echo $flash->old('path'); ?>" target="_blank">./pages/category<?php echo $flash->old('path'); ?></a></p>
+                </div>
+                
                 <div class="form-group">
                 <label>Title</label>
                      <input type="text" name="title" placeholder="Title" value="<?php echo $flash->old('title'); ?>" class="form-control" />

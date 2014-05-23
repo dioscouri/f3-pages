@@ -3,8 +3,15 @@ namespace Pages\Models;
 
 class Pages extends \Dsc\Mongo\Collections\Content 
 {
+    use \Search\Traits\SearchItem;
+    
     public $categories = array();
     public $featured_image = array();
+    protected $__config = array(
+        'default_sort' => array(
+            'publication.start.time' => -1
+        ),
+    );
     
     protected $__type = 'pages.pages';
     
@@ -23,6 +30,13 @@ class Pages extends \Dsc\Mongo\Collections\Content
         		$this->setCondition('categories.slug', $filter_category_slug );
         	}
         }
+        
+        $filter_category_id = $this->getState('filter.category.id');
+        if (strlen($filter_category_id))
+        {
+            $this->setCondition('categories.id', new \MongoId( (string) $filter_category_id ) );
+        }
+        
         return $this;
     }
     
@@ -48,6 +62,22 @@ class Pages extends \Dsc\Mongo\Collections\Content
             $this->categories = $categories;
         }
         
+        if (!empty($this->images))
+        {
+            $images = array();
+            $current = $this->images;
+            $this->images = array();
+        
+            foreach ($current as $image)
+            {
+                if (!empty($image['image'])) {
+                    $images[] = array( 'image' => $image['image'] );
+                }
+            }
+        
+            $this->images = $images;
+        }
+        
         unset($this->parent);
         unset($this->new_category_title);
 
@@ -61,5 +91,24 @@ class Pages extends \Dsc\Mongo\Collections\Content
         }
         
         return parent::validate();
+    }
+    
+    /**
+     * Converts this to a search item, used in the search template when displaying each search result
+     */
+    public function toSearchItem()
+    {
+        $image = (!empty($this->{'featured_image.slug'})) ? './asset/thumb/' . $this->{'featured_image.slug'} : null;
+    
+        $item = new \Search\Models\Item(array(
+            'url' => './pages/' . $this->slug,
+            'title' => $this->title,
+            'subtitle' => '',
+            'image' => $image,
+            'summary' => substr( $this->copy, 0, 250 ),
+            'datetime' => $this->{'publication.start.local'},
+        ));
+    
+        return $item;
     }
 }
