@@ -120,9 +120,6 @@ jQuery(function(jQuery) {
         </div>
         <!-- /.widget-body-toolbar -->
 
-        <input type="hidden" name="list[order]" value="<?php echo $state->get('list.order'); ?>" /> 
-        <input type="hidden" name="list[direction]" value="<?php echo $state->get('list.direction'); ?>" />
-
         <?php if (!empty($paginated->items)) { ?>
         <?php foreach($paginated->items as $item) { ?>
             <div class="panel panel-default">
