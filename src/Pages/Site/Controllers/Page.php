@@ -3,7 +3,9 @@ namespace Pages\Site\Controllers;
 
 class Page extends \Dsc\Controller 
 {    
-    protected function getModel() 
+	use \Dsc\Traits\Controllers\SupportPreview;
+	
+	protected function getModel() 
     {
         $model = new \Pages\Models\Pages;
         return $model; 
@@ -16,9 +18,15 @@ class Page extends \Dsc\Controller
     	$f3 = \Base::instance();
     	$slug = $this->inputfilter->clean( $f3->get('PARAMS.slug'), 'cmd' );
     	$model = $this->getModel()->populateState()
-            ->setState('filter.slug', $slug)
-    	   ->setState( 'filter.published_today', true )
-    	   ->setState( 'filter.publication_status', 'published' );
+            ->setState('filter.slug', $slug);
+    	
+    	$preview = $this->input->get( "preview", 0, 'int' );
+    	if( $preview ){
+    		$this->canPreview();
+    	} else {
+    		$model->setState('filter.published_today', true)
+    		->setState('filter.publication_status', 'published');
+    	}
     	    	
     	try {
     		$item = $model->getItem();

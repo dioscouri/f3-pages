@@ -4,7 +4,8 @@ namespace Pages\Admin\Controllers;
 class Pages extends \Admin\Controllers\BaseAuth 
 {
     use \Dsc\Traits\Controllers\AdminList;
-		
+    use \Dsc\Traits\Controllers\SupportPreview;
+    
     protected $list_route = '/admin/pages/pages';
 
     protected function getModel($name = 'pages')
@@ -28,10 +29,10 @@ class Pages extends \Admin\Controllers\BaseAuth
         
         $model = $this->getModel();
         $state = $model->populateState()->getState();
-        \Base::instance()->set('state', $state );
+        $this->app->set('state', $state );
         
         $paginated = $model->paginate();
-        \Base::instance()->set('paginated', $paginated );
+        $this->app->set('paginated', $paginated );
         
         $categories_db = (array) $this->getModel( "categories" )->getItems();
         $categories = array(
@@ -45,7 +46,7 @@ class Pages extends \Admin\Controllers\BaseAuth
         	);
         } );
         
-        \Base::instance()->set('categories', $categories );
+        $this->app->set('categories', $categories );
         
         $all_tags = array(
        		array( 'text' => 'All Tags', 'value' => ' ' ),
@@ -62,6 +63,7 @@ class Pages extends \Admin\Controllers\BaseAuth
         \Base::instance()->set('all_tags', $all_tags );
         
         $this->app->set('meta.title', 'Pages');
+        $this->app->set( 'allow_preview', $this->canPreview( true ) );
         
         $view = \Dsc\System::instance()->get('theme');
         echo $view->render('Pages/Admin/Views::pages/list.php');

@@ -4,6 +4,7 @@ namespace Pages\Admin\Controllers;
 class Page extends \Admin\Controllers\BaseAuth 
 {
     use \Dsc\Traits\Controllers\CrudItemCollection;
+    use \Dsc\Traits\Controllers\SupportPreview;
 
     protected $list_route = '/admin/pages/pages';
     protected $create_item_route = '/admin/pages/page/create';
@@ -86,6 +87,7 @@ class Page extends \Admin\Controllers\BaseAuth
         \Base::instance()->set('all_tags', $all_tags );
         
         $this->app->set('meta.title', 'Edit Page');
+        $this->app->set( 'allow_preview', $this->canPreview( true ) );
         
         $view = \Dsc\System::instance()->get('theme');
         $view->event = $view->trigger( 'onDisplayPagesEdit', array( 'item' => $item, 'tabs' => array(), 'content' => array() ) );
