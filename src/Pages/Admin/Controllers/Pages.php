@@ -60,7 +60,7 @@ class Pages extends \Admin\Controllers\BaseAuth
         	);
         } );
 
-        \Base::instance()->set('all_tags', $all_tags );
+        $this->app->set('all_tags', $all_tags );
         
         $this->app->set('meta.title', 'Pages');
         $this->app->set( 'allow_preview', $this->canPreview( true ) );
