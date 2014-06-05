@@ -3,7 +3,7 @@ namespace Pages\Models;
 
 class Pages extends \Dsc\Mongo\Collections\Content
 {
-    use\Search\Traits\SearchItem;
+    use \Search\Traits\SearchItem;
 
     public $categories = array();
 
@@ -122,7 +122,7 @@ class Pages extends \Dsc\Mongo\Collections\Content
             'title' => $this->title,
             'subtitle' => '',
             'image' => $image,
-            'summary' => substr($this->copy, 0, 250),
+            'summary' => $this->getAbstract(),
             'datetime' => $this->{'publication.start.local'}
         ));
         
