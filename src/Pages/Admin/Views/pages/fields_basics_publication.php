@@ -16,6 +16,7 @@
                 <option value="draft" <?php if ($flash->old('publication.status') == 'draft') { echo "selected='selected'"; } ?>>Draft</option>
                 <option value="pending" <?php if ($flash->old('publication.status') == 'pending') { echo "selected='selected'"; } ?>>Pending Review</option>
                 <option value="published" <?php if ($flash->old('publication.status') == 'published') { echo "selected='selected'"; } ?>>Published</option>
+                <option value="unpublished" <?php if ($flash->old('publication.status') == 'unpublished') { echo "selected='selected'"; } ?>>Unpublished</option>
             </select>
         
         </div>
