@@ -35,8 +35,8 @@ class Page extends \Dsc\Controller
     		}
     		
     	} catch ( \Exception $e ) {
-    		\Dsc\System::instance()->addMessage( "Invalid Item", 'error');
-    		$f3->reroute( '/' );
+            \Dsc\System::instance()->addMessage( "Invalid Item", 'error');
+    		$this->app->error( '404' );
     		return;
     	}
     	
