@@ -38,6 +38,20 @@
                     <p><b>URL:</b> <a href="./pages/category<?php echo $flash->old('path'); ?>" target="_blank">./pages/category<?php echo $flash->old('path'); ?></a></p>
                 </div>
                 
+            </div>
+            
+        </div>
+        
+        <div class="row">
+            <div class="col-md-2">
+            
+                <h3>Basics</h3>
+                        
+            </div>
+            <!-- /.col-md-2 -->
+                        
+            <div class="col-md-10">
+        
                 <div class="form-group">
                 <label>Title</label>
                      <input type="text" name="title" placeholder="Title" value="<?php echo $flash->old('title'); ?>" class="form-control" />
@@ -69,10 +83,20 @@
                     </select>
                 </div>
                 <!-- /.form-group -->
-                
-            </div>
             
+            </div>
+            <!-- /.col-md-10 -->
         </div>
+        <!-- /.row -->           
+        
+        <hr />
+        
+        <?php echo $this->renderLayout('Pages/Admin/Views::categories/fields_seo.php'); ?>
+        
+        <hr />
+        
+        <?php echo $this->renderLayout('Pages/Admin/Views::categories/fields_featuredimage.php'); ?>
+                
     </form>
 
 </div>

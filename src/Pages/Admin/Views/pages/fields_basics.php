@@ -34,6 +34,10 @@
 
 <hr />
 
+<?php echo $this->renderLayout('Pages/Admin/Views::pages/fields_seo.php'); ?>
+
+<hr />
+
 <?php echo $this->renderLayout('Pages/Admin/Views::pages/fields_basics_publication.php'); ?>
 
 <hr />

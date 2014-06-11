@@ -42,8 +42,9 @@ class Page extends \Dsc\Controller
     	
     	$this->app->set('item', $item );
     	
-    	$this->app->set('meta.title', $item->title);
-    	
+    	$this->app->set('meta.title', $item->seoTitle());
+    	$this->app->set('meta.description', $item->seoDescription() );
+    	    	
     	$view = \Dsc\System::instance()->get('theme');
     	
     	$view_file = 'view.php';
