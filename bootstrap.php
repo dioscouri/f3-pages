@@ -10,5 +10,12 @@ class PagesBootstrap extends \Dsc\Bootstrap
             'id'=>'pages', 'title'=>'Pages', 'class'=>'\Pages\Models\Pages'
         ) ) );
     }
+    
+    protected function preAdmin()
+    {
+        \Search\Factory::registerSource( new \Search\Models\Source( array(
+            'id'=>'pages', 'title'=>'Pages', 'class'=>'\Pages\Models\Pages'
+        ) ) );
+    }    
 }
 $app = new PagesBootstrap();
