@@ -44,6 +44,11 @@ class Page extends \Dsc\Controller
     	
     	$this->app->set('meta.title', $item->seoTitle());
     	$this->app->set('meta.description', $item->seoDescription() );
+    	
+    	\Pages\Models\Activities::track('Viewed Page', array(
+    	    'Page Title' => $item->seoTitle(),
+    	    'page_id' => (string) $item->id
+    	));    	
     	    	
     	$view = \Dsc\System::instance()->get('theme');
     	
