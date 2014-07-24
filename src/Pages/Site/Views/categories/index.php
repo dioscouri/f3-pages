@@ -6,7 +6,14 @@ if (!empty($module_content)) {
 ?>
 
 <div id="pages-category" class="pages-pages">
-    <div class="container">    
+    <div class="container">
+    
+        <?php if ($category->{'featured_image.slug'}) { ?>
+        <div class="category-header-image">
+            <img class="img-responsive" src="./asset/thumb/<?php echo $category->{'featured_image.slug'}; ?>" title="<?php echo $category->{'title'}; ?>" alt="<?php echo $category->{'title'}; ?>">
+        </div>
+        <?php } ?>
+            
         <div class="row">
             <div class="col-sm-<?php echo !empty($aside) ? '9' : '12'; ?>">    
             
