@@ -10,7 +10,7 @@ if (!empty($module_content)) {
     
         <?php if ($category->{'featured_image.slug'}) { ?>
         <div class="category-header-image">
-            <img class="img-responsive" src="./asset/thumb/<?php echo $category->{'featured_image.slug'}; ?>" title="<?php echo $category->{'title'}; ?>" alt="<?php echo $category->{'title'}; ?>">
+            <img class="img-responsive" src="./asset/<?php echo $category->{'featured_image.slug'}; ?>" title="<?php echo $category->{'title'}; ?>" alt="<?php echo $category->{'title'}; ?>">
         </div>
         <?php } ?>
             
