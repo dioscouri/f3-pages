@@ -38,9 +38,9 @@ jQuery(function(jQuery) {
 						</select>
                     </li>
                     <li class="col-md-3">
-						<select name="filter[tags]" data-select='1'>
+						<select name="filter[tag]" data-select='1'>
                             <?php 
-                            	echo \Dsc\Html\Select::options($all_tags, $state->get('filter.tags'));
+                            	echo \Dsc\Html\Select::options($all_tags, $state->get('filter.tag'));
                             ?>                    			
 						</select>
                     </li>

@@ -50,7 +50,10 @@ jQuery(document).ready(function(){
         </li>
         <li>
             <a href="#tab-video" data-toggle="tab"> Video </a>
-        </li>        
+        </li>
+        <li>
+            <a href="#tab-links" data-toggle="tab"> Links </a>
+        </li>                
         <li>
             <a href="#tab-display" data-toggle="tab"> Display </a>
         </li>        
@@ -80,6 +83,13 @@ jQuery(document).ready(function(){
         <div class="tab-pane" id="tab-video">
 
             <?php echo $this->renderLayout('Pages/Admin/Views::pages/fields_video.php'); ?>
+                                
+        </div>
+        <!-- /.tab-pane -->
+        
+        <div class="tab-pane" id="tab-links">
+
+            <?php echo $this->renderLayout('Pages/Admin/Views::pages/fields_links.php'); ?>
                                 
         </div>
         <!-- /.tab-pane -->
