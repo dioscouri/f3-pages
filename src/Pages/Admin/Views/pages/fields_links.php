@@ -5,17 +5,31 @@
     <h3>Current Links</h3>
     
     <?php foreach ((array) $flash->old('links') as $key=>$link) { ?>
-        <fieldset class="template well clearfix">
-            <a class="remove-link btn btn-xs btn-danger pull-right" onclick="PagesRemoveRelatedLink(this);" href="javascript:void(0);">
-                <i class="fa fa-times"></i>
-            </a>                        
-            <label>Link</label>
-            <div class="form-group clearfix">
+        <div class="template well clearfix">
+            <div class="row">
                 <div class="col-md-12">
-                    <input type="text" name="links[<?php echo $key; ?>]" class="form-control" value="<?php echo $flash->old( 'links.'.$key ); ?>" />
+                <a class="remove-link btn btn-xs btn-danger pull-right" onclick="PagesRemoveRelatedLink(this);" href="javascript:void(0);">
+                    <i class="fa fa-times"></i>
+                </a>                       
+                </div>
+            </div> 
+            
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" name="links[<?php echo $key; ?>][title]" class="form-control" value="<?php echo $flash->old( 'links.'.$key.'.title' ); ?>" placeholder="Title" />
+                    </div>
+                </div>            
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label>Url</label>
+                        <input type="text" name="links[<?php echo $key; ?>][url]" class="form-control" value="<?php echo $flash->old( 'links.'.$key.'.url' ); ?>" placeholder="URL" />
+                    </div>
                 </div>
             </div>
-        </fieldset>                        
+            
+        </div>                        
     <?php } ?>
 </div>
 <!-- /.col-md-8 -->
@@ -25,17 +39,30 @@
     <input type="hidden" name="links[]" value="" />
 
     <template type="text/template" id="add-link-template">
-        <fieldset class="template well clearfix">
+        <div class="template well clearfix">
             <a class="remove-link btn btn-xs btn-danger pull-right" onclick="PagesRemoveRelatedLink(this);" href="javascript:void(0);">
                 <i class="fa fa-times"></i>
-            </a>                        
+            </a>
+                                    
             <label>New Link</label>
-            <div class="form-group clearfix">
+            <div class="row">
                 <div class="col-md-12">
-                    <input type="text" name="links[{id}]" class="form-control" value="" />
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" name="links[{id}][title]" class="form-control" placeholder="Title" />
+                    </div>
                 </div>
-            </div>
-        </fieldset>
+            </div>                   
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Url</label>
+                        <input type="text" name="links[{id}][url]" class="form-control" placeholder="URL" />
+                    </div>
+                </div>
+            </div>            
+
+        </div>
     </template>
     
     <div class="form-group">
