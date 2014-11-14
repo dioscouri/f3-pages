@@ -44,6 +44,19 @@ jQuery(function(jQuery) {
                             ?>                    			
 						</select>
                     </li>
+                    <li class="col-md-3">
+						<select name="filter[publication_status]" data-select='1'>
+                            <?php 
+                            	echo \Dsc\Html\Select::options(array(
+                                    array('text'=>'All Statuses', 'value'=>''),
+                                    array('text'=>'Draft', 'value'=>'draft'),
+                                    array('text'=>'Pending', 'value'=>'pending'),
+                                    array('text'=>'Published', 'value'=>'published'),
+                                    array('text'=>'Unpublished', 'value'=>'unpublished'),
+                                ), $state->get('filter.publication_status'));
+                            ?>                    			
+						</select>
+                    </li>                    
                 </ul>    
                         
             </div>
@@ -131,43 +144,19 @@ jQuery(function(jQuery) {
                     
                         <div class="col-xs-11 col-sm-11 col-md-11">
                         	<div class="row">
-                        		<div class="hidden-xs hidden-sm col-md-3 col-lg-3">
-								<?php if( !empty( $item->{'featured_image.slug'} ) ) { ?>
-                        			<a href="./admin/pages/page/edit/<?php echo $item->id; ?>" title="<?php echo $item->title; ?>">
-                        			<img class="img-responsive" src="./asset/thumb/<?php echo $item->{'featured_image.slug'}; ?>" alt="<?php echo $item->title; ?>" />
-                        			</a>
-                        		<?php } else { ?>
-                        			&nbsp;
-                        		<?php } ?>
-                        		</div>
                         		
-                        		<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                        		<div class="col-xs-10 col-sm-10 col-md-8 col-lg-8">
                         			<div class="row">
 		                        		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         					<legend><a href="./admin/pages/page/edit/<?php echo $item->id; ?>"><?php echo $item->title; ?></a></legend>
+		                        			<p>
+		                        				<label>Slug:</label> <a target="_blank" href="./pages/<?php echo $item->slug; ?>">/<?php echo $item->slug; ?> <i class="fa fa-external-link"></i></a>
+		                        			</p>                        					
 		                        		</div>
                         			</div>
                         			<div class="row">
-		                        		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-		                        			<div>
-		                        				<label>Slug:</label> <a target="_blank" href="./pages/<?php echo $item->slug; ?>">/<?php echo $item->slug; ?> <i class="fa fa-external-link"></i></a>
-		                        			</div>
-		                        			<?php $categories = \Joomla\Utilities\ArrayHelper::getColumn( (array) $item->categories, 'title' ); ?>
-		                        			<?php if ($categories) { ?>
-		                        			<div>			                        			
-		                        				<label>Categories:</label>
-												<span class='label label-warning'><?php echo implode("</span> <span class='label label-warning'>", (array) $categories ); ?></span>
-		                        			</div>
-		                        			<?php } ?>
-		                        			<?php if ($item->tags) { ?>
-		                        			<div>
-		                        				<label>Tags:</label>
-												<span class='label label-info'><?php echo implode("</span> <span class='label label-info'>", (array) $item->tags); ?></span>
-		                        			</div>
-		                        			<?php } ?>
-		                        		</div>
 		                        		
-		                        		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+		                        		<div class="col-xs-12 col-sm-12 col-md-6">
 				                            <p>
                                                 <span class="label <?php echo $item->publishableStatusLabel(); ?>">
                                                 <?php echo $item->{'publication.status'}; ?>
@@ -185,18 +174,44 @@ jQuery(function(jQuery) {
 				                            <?php } ?>
 		                        		</div>
 		                        		
-		                        		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+		                        		<div class="col-xs-12 col-sm-12 col-md-6">
+		                        			<?php $categories = \Joomla\Utilities\ArrayHelper::getColumn( (array) $item->categories, 'title' ); ?>
+		                        			<?php if ($categories) { ?>
+		                        			<div>			                        			
+		                        				<label>Categories:</label>
+												<span class='label label-warning'><?php echo implode("</span> <span class='label label-warning'>", (array) $categories ); ?></span>
+		                        			</div>
+		                        			<?php } ?>
+		                        			<?php if ($item->tags) { ?>
+		                        			<div>
+		                        				<label>Tags:</label>
+												<span class='label label-info'><?php echo implode("</span> <span class='label label-info'>", (array) $item->tags); ?></span>
+		                        			</div>
+		                        			<?php } ?>
+		                        			
 		                        		    <?php if ($item->{'display.view'}) { ?>
 				                            <div>
 				                            	<label>Display:</label> <span class="label label-default"><?php echo $item->{'display.view'}; ?></span>
 				                            </div>
 				                            <?php } ?>
+		                        			
 		                        		</div>
+		                        		
 		                        		
 	                            	</div>
                         		</div>
+                        		
+                        		<div class="hidden-xs hidden-sm col-md-2 col-lg-2">
+								<?php if( !empty( $item->{'featured_image.slug'} ) ) { ?>
+                        			<a href="./admin/pages/page/edit/<?php echo $item->id; ?>" title="<?php echo $item->title; ?>">
+                        			<img class="img-responsive" src="./asset/thumb/<?php echo $item->{'featured_image.slug'}; ?>" alt="<?php echo $item->title; ?>" />
+                        			</a>
+                        		<?php } else { ?>
+                        			&nbsp;
+                        		<?php } ?>
+                        		</div>
 
-		                        <div class="hidden-xs hidden-sm col-md-1 col-lg-1">
+		                        <div class="col-sm-2 col-md-2 col-lg-2 text-right">
 					        	<?php if( $allow_preview ) { ?>
 			                        <a class="btn btn-xs btn-warning" target="_blank" href="./pages/<?php echo $item->slug; ?>?preview=1">
 			                            <i class="fa fa-search"></i>
