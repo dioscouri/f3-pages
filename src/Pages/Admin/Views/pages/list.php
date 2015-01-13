@@ -221,12 +221,10 @@ jQuery(function(jQuery) {
                         		<?php } ?>
                         		</div>
 
-<<<<<<< HEAD
-		                        <div class="col-md-3 col-lg-1">
-		                       
-=======
+		                   
+
 		                        <div class="col-sm-2 col-md-2 col-lg-2 text-right">
->>>>>>> 1fa6802ddc62bb8cd6115edb465620eb465ed7d5
+
 					        	<?php if( $allow_preview ) { ?>
 			                        <a class="btn btn-xs btn-warning" target="_blank" href="./pages/<?php echo $item->slug; ?>?preview=1">
 			                            <i class="fa fa-search"></i>
