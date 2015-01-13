@@ -122,6 +122,10 @@ jQuery(function(jQuery) {
 
         <?php if (!empty($paginated->items)) { ?>
         <?php foreach($paginated->items as $item) { ?>
+        
+        <?php $xEditable = new \Dsc\Html\xEditable($item, '/admin/pages/page/edit/inline'); ?>
+          <?php $publishStates = array(array('value' => 'draft', 'text' => 'draft'), array('value' => 'unpublished', 'text' => 'unpublished'), array('value' => 'published', 'text' => 'published')) ; ?>
+        
             <div class="list-group-item">
                 <div class="panel-body">
                     <div class="row">
@@ -144,7 +148,9 @@ jQuery(function(jQuery) {
                         		<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
                         			<div class="row">
 		                        		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        					<legend><a href="./admin/pages/page/edit/<?php echo $item->id; ?>"><?php echo $item->title; ?></a></legend>
+                        					<legend><a href="./admin/pages/page/edit/<?php echo $item->id; ?>"><?php echo $item->title; ?></a>
+                        					</legend>
+                        					
 		                        		</div>
                         			</div>
                         			<div class="row">
@@ -169,9 +175,13 @@ jQuery(function(jQuery) {
 		                        		
 		                        		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
 				                            <p>
-                                                <span class="label <?php echo $item->publishableStatusLabel(); ?>">
-                                                <?php echo $item->{'publication.status'}; ?>
-                                                </span>				                            	
+				                            
+				                            
+				                             
+				                             <span class="publishState">
+				                             <?php echo $xEditable->publishable( $item->{'publication.status'}); ?>
+				                             </span>
+				                             				                            	
 				                            </p>
 				                            <?php if ($item->{'publication.start_date'}) { ?>
 				                            <div>
@@ -196,7 +206,8 @@ jQuery(function(jQuery) {
 	                            	</div>
                         		</div>
 
-		                        <div class="hidden-xs hidden-sm col-md-1 col-lg-1">
+		                        <div class="col-md-3 col-lg-1">
+		                       
 					        	<?php if( $allow_preview ) { ?>
 			                        <a class="btn btn-xs btn-warning" target="_blank" href="./pages/<?php echo $item->slug; ?>?preview=1">
 			                            <i class="fa fa-search"></i>
