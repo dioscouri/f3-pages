@@ -2,7 +2,6 @@
     <div class="col-md-2">
     
         <h3>Details</h3>
-        <p class="help-block">Some helpful text</p>
                 
     </div>
     <!-- /.col-md-2 -->
@@ -42,8 +41,8 @@
 
 <hr />
 
-<?php echo $this->renderLayout('Pages/Admin/Views::pages/fields_basics_categories.php'); ?>
+<?php echo $this->renderLayout('Pages/Admin/Views::pages/fields_basics_tags.php'); ?>
 
 <hr />
 
-<?php echo $this->renderLayout('Pages/Admin/Views::pages/fields_basics_tags.php'); ?>
+<?php echo $this->renderLayout('Pages/Admin/Views::pages/fields_basics_categories.php'); ?>

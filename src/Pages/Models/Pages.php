@@ -6,6 +6,8 @@ class Pages extends \Dsc\Mongo\Collections\Content
     public $categories = array();
 
     public $featured_image = array();
+    
+    public $links = array();
 
     protected $__config = array(
         'default_sort' => array(
@@ -21,23 +23,33 @@ class Pages extends \Dsc\Mongo\Collections\Content
         
         $this->setCondition('type', $this->__type);
         
-        $filter_category_slug = trim($this->getState('filter.category.slug'));
-        if (strlen($filter_category_slug))
+        $filter_category_slug = $this->getState('filter.category.slug');
+        if (is_array($filter_category_slug) && !empty($filter_category_slug))
         {
+            $this->setCondition('categories.slug', array('$in' => array_values( array_filter( $filter_category_slug ) ) ));
+        }
+        elseif (is_string($filter_category_slug) && strlen($filter_category_slug))
+        {
+            $filter_category_slug = trim($filter_category_slug);
+            
             if ($filter_category_slug == '--')
             {
                 $this->setCondition('categories', array(
                     '$size' => 0
                 ));
             }
-            else
+            elseif(strlen($filter_category_slug))
             {
                 $this->setCondition('categories.slug', $filter_category_slug);
             }
         }
         
         $filter_category_id = $this->getState('filter.category.id');
-        if (strlen($filter_category_id))
+        if (is_array($filter_category_id) && !empty($filter_category_id))
+        {
+            $this->setCondition('categories.id', array('$in' => array_values( array_filter( $filter_category_id ) ) ));
+        }        
+        elseif (is_string($filter_category_id) && strlen($filter_category_id))
         {
             $this->setCondition('categories.id', new \MongoId((string) $filter_category_id));
         }
@@ -94,6 +106,8 @@ class Pages extends \Dsc\Mongo\Collections\Content
         
         unset($this->parent);
         unset($this->new_category_title);
+        
+        $this->links = array_values( array_filter( $this->links ) );
         
         return parent::beforeValidate();
     }

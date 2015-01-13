@@ -49,6 +49,12 @@ jQuery(document).ready(function(){
             <a href="#tab-images" data-toggle="tab"> Images </a>
         </li>
         <li>
+            <a href="#tab-video" data-toggle="tab"> Video </a>
+        </li>
+        <li>
+            <a href="#tab-links" data-toggle="tab"> Links </a>
+        </li>                
+        <li>
             <a href="#tab-display" data-toggle="tab"> Display </a>
         </li>        
         <?php if (!empty($this->event)) { foreach ((array) $this->event->getArgument('tabs') as $key => $title ) { ?>
@@ -70,6 +76,20 @@ jQuery(document).ready(function(){
         <div class="tab-pane" id="tab-images">
 
             <?php echo $this->renderLayout('Pages/Admin/Views::pages/fields_images.php'); ?>
+                                
+        </div>
+        <!-- /.tab-pane -->
+        
+        <div class="tab-pane" id="tab-video">
+
+            <?php echo $this->renderLayout('Pages/Admin/Views::pages/fields_video.php'); ?>
+                                
+        </div>
+        <!-- /.tab-pane -->
+        
+        <div class="tab-pane" id="tab-links">
+
+            <?php echo $this->renderLayout('Pages/Admin/Views::pages/fields_links.php'); ?>
                                 
         </div>
         <!-- /.tab-pane -->
