@@ -134,7 +134,7 @@ class Pages extends \Dsc\Mongo\Collections\Content
             'title' => $this->title,
             'subtitle' => '',
             'image' => $image,
-            'summary' => $this->getAbstract(),
+            'summary' => $this->getAbstract(array('strip_tags' => true)),
             'datetime' => $this->{'publication.start.local'}
         ));
         
@@ -154,7 +154,7 @@ class Pages extends \Dsc\Mongo\Collections\Content
             'title' => $this->title,
             'subtitle' => 'By: ' . $this->{'metadata.creator.name'},
             'image' => $image,
-            'summary' => $this->getAbstract(),
+            'summary' => $this->getAbstract(array('strip_tags' => true)),
             'datetime' => $published_status . ' ' . date('Y-m-d', $this->{'publication.start.time'} ),
         ));
     
