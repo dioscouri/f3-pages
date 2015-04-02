@@ -4,7 +4,7 @@
     </div>
 <?php } ?>
 
-<article id="page-<?php echo $item->id; ?>" class="page-<?php echo $item->id; ?>">
+<article id="page-<?php echo $item->id; ?>" class="pages-page page-<?php echo $item->id; ?>">
 
     <div class="entry-header">
         <?php if (!empty($item->{'featured_image.slug'}) && ($item->{'display.image_position'} == 'top')) { ?>
