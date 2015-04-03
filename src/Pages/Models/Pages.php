@@ -21,7 +21,8 @@ class Pages extends \Dsc\Mongo\Collections\Content
     {
         parent::fetchConditions();
         
-        $this->setCondition('type', $this->__type);
+        $key = new \MongoRegex('/'.$this->type().'/i');
+        $this->setCondition('type', $key);
         
         $filter_category_slug = $this->getState('filter.category.slug');
         if (is_array($filter_category_slug) && !empty($filter_category_slug))

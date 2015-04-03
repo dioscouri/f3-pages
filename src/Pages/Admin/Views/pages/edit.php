@@ -28,6 +28,9 @@ jQuery(document).ready(function(){
                         <a onclick="document.getElementById('primarySubmit').value='save_new'; document.getElementById('detail-form').submit();" href="javascript:void(0);">Save & Create Another</a>
                     </li>
                     <li>
+                        <a onclick="document.getElementById('primarySubmit').value='save_as'; document.getElementById('detail-form').submit();" href="javascript:void(0);">Save As</a>
+                    </li>
+                    <li>
                         <a onclick="document.getElementById('primarySubmit').value='save_close'; document.getElementById('detail-form').submit();" href="javascript:void(0);">Save & Close</a>
                     </li>
                 </ul>
@@ -56,7 +59,10 @@ jQuery(document).ready(function(){
         </li>                
         <li>
             <a href="#tab-display" data-toggle="tab"> Display </a>
-        </li>        
+        </li>
+        <li>
+            <a href="#tab-translations" data-toggle="tab"> Translations </a>
+        </li>
         <?php if (!empty($this->event)) { foreach ((array) $this->event->getArgument('tabs') as $key => $title ) { ?>
         <li>
             <a href="#tab-<?php echo $key; ?>" data-toggle="tab"> <?php echo $title; ?> </a>
@@ -98,6 +104,11 @@ jQuery(document).ready(function(){
 
             <?php echo $this->renderLayout('Pages/Admin/Views::pages/fields_display.php'); ?>
                                 
+        </div>
+        <!-- /.tab-pane -->
+        
+        <div class="tab-pane" id="tab-translations">
+            <?php echo $this->renderLayout('Pages/Admin/Views::pages/fields_translations.php'); ?>
         </div>
         <!-- /.tab-pane -->
         
