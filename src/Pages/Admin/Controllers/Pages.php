@@ -28,7 +28,7 @@ class Pages extends \Admin\Controllers\BaseAuth
         //$this->checkAccess( __CLASS__, __FUNCTION__ );
         
         $model = $this->getModel();
-        $state = $model->populateState()->getState();
+        $state = $model->populateState()->setState('filter.type', true)->getState();
         $this->app->set('state', $state );
         
         $paginated = $model->paginate();

@@ -157,15 +157,12 @@ jQuery(function(jQuery) {
 		                        			<p>
 		                        				<label>Slug:</label> <a target="_blank" href="./pages/<?php echo $item->slug; ?>">/<?php echo $item->slug; ?> <i class="fa fa-external-link"></i></a>
 		                        			</p>                        					
-
 		                        		</div>
                         			</div>
                         			<div class="row">
 		                        		
 		                        		<div class="col-xs-12 col-sm-12 col-md-6">
 				                            <p>
-				                            
-				                            
 				                             
 				                             <span class="publishState">
 				                             <?php echo $xEditable->publishable( $item->{'publication.status'}); ?>

@@ -10,7 +10,16 @@ jQuery(document).ready(function(){
 <form id="detail-form" class="form" method="post">
 
     <div class="clearfix">
-
+        <?php 
+        if ($item->language)
+        {
+            ?>
+            <div class="pull-left">
+            <p>This is the <b><?php echo $item->language; ?></b> translation.</p>
+            </div>
+            <?php
+        }        
+        ?>        
         <div class="pull-right">
         	<?php if( $allow_preview ) { ?>
             <a class="btn btn-warning" href="./pages/<?php echo $flash->old('slug'); ?>?preview=1" target="_blank">Preview</a>

@@ -8,8 +8,6 @@
     <!-- /.col-md-2 -->
                 
     <div class="col-md-10">
-
-        
         
         <?php foreach (\Dsc\Mongo\Collections\Translations\Languages::find() as $language) { ?>
         <div class="list-group-item">
@@ -19,14 +17,39 @@
             </div>
             <div class="col-sm-6">
                 <?php 
-                if ($translation = $item->translationExists( $language->code ) ) {
-                    if ($translation->id != $item->id) {  
+                if (empty($item->language) && $language->code == 'en') 
+                {
                     ?>
-                    <a href="./admin/pages/page/edit/<?php echo $translation->id; ?>" class="btn btn-success">Edit Existing Translation</a>
-                    <?php 
+                    <p>This is the <b><?php echo $language->code; ?></b> translation.
+                    <?php                    
+                }
+                elseif (!empty($item->language) && $language->code == 'en') 
+                {
+                    if ($translation_source = $item->translationSource()) 
+                    {
+                        ?>
+                        <a href="./admin/pages/page/edit/<?php echo $translation_source->id; ?>" class="btn btn-info">Edit Original</a>
+                        <?php 
+                    }
+                                        
+                }
+                elseif ($language->code == $item->language) 
+                {
+                    ?>
+                    <p>This is the <b><?php echo $language->code; ?></b> translation.</p>
+                    <?php
+                }
+                elseif ($translation = $item->translationExists( $language->code ) ) 
+                {
+                    if ($translation->id != $item->id) 
+                    {  
+                        ?>
+                        <a href="./admin/pages/page/edit/<?php echo $translation->id; ?>" class="btn btn-success">Edit Existing Translation</a>
+                        <?php 
                     }
                 } 
-                else { 
+                else 
+                { 
                     ?>
                     <a href="./admin/pages/page/translate/<?php echo $item->id; ?>/<?php echo $language->code; ?>" class="btn btn-warning">Create and Edit New Translation</a>
                     <?php 
