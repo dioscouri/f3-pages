@@ -1,9 +1,21 @@
-<script src="./ckeditor/ckeditor.js"></script>
 <script>
 jQuery(document).ready(function(){
     CKEDITOR.replaceAll( 'wysiwyg' );    
 });
 </script>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+        <h1 class="page-title txt-color-blueDark">
+            <i class="fa fa-table fa-fw "></i> 
+            <a href="./admin/pages/pages">Pages</a>
+            <span> > Create New </span>
+        </h1>
+    </div>
+    <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
+
+    </div>
+</div>
 
 <div class="well">
 
