@@ -25,7 +25,7 @@ class Category extends \Dsc\Controller
                 throw new \Exception();
             }
             $paginated = $model->populateState()
-                ->setState('filter.category.id', $category->id)
+                ->setState('filter.category.id', (string) $category->id)
                 ->setState('filter.publication_status', 'published')
                 ->setState('filter.published_today', true)
                 ->paginate();
