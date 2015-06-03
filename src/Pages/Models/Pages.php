@@ -112,6 +112,14 @@ class Pages extends \Dsc\Mongo\Collections\Content
         unset($this->new_category_title);
         
         $this->links = array_values( array_filter( $this->links ) );
+        if ($this->links) {
+            foreach ($this->links as $key=>$link) {
+                if (empty($link['title']) && empty($link['url'])) {
+                    unset($this->links[$key]);
+                }
+            }
+            $this->links = array_values( array_filter( $this->links ) );
+        }
         
         return parent::beforeValidate();
     }
