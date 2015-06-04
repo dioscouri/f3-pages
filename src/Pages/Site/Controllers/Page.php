@@ -15,7 +15,7 @@ class Page extends \Dsc\Controller
     {
     	// TODO Check ACL against page.
     	$slug = $this->inputfilter->clean( $this->app->get('PARAMS.slug'), 'cmd' );
-    	$model = $this->getModel()->populateState()
+    	$model = $this->getModel()->populateState()->setState('filter.type', true)
             ->setState('filter.slug', $slug);
     	
     	$preview = $this->input->get( "preview", 0, 'int' );
