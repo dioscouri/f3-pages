@@ -28,6 +28,23 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Target</label>
+                        <select name="links[<?php echo $key; ?>][target]" class="form-control">
+                            <option value="">Same Window</option>
+                            <option value="_blank" <?php if ($flash->old( 'links.'.$key.'.target' ) == '_blank') { echo "selected"; } ?>>New Window</option>
+                        </select>
+                    </div>
+                </div>            
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label>Classes</label>
+                        <input type="text" name="links[<?php echo $key; ?>][classes]" class="form-control" value="<?php echo $flash->old( 'links.'.$key.'.classes' ); ?>" placeholder="e.g. no-handoff" />
+                    </div>
+                </div>
+            </div>            
             
         </div>                        
     <?php } ?>
@@ -61,6 +78,23 @@
                     </div>
                 </div>
             </div>            
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Target</label>
+                        <select name="links[{id}][target]" class="form-control">
+                            <option value="">Same Window</option>
+                            <option value="_blank">New Window</option>
+                        </select>
+                    </div>
+                </div>            
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label>Classes</label>
+                        <input type="text" name="links[{id}][classes]" class="form-control" value="" placeholder="e.g. no-handoff" />
+                    </div>
+                </div>
+            </div>
 
         </div>
     </template>
