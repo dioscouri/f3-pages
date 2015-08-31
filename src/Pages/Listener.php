@@ -3,8 +3,6 @@ namespace Pages;
 
 class Listener extends \Prefab 
 {
-
-	
 	function siteMapRegisterRoutes($event) {
 		$routes = $event->getArgument('routes');
 		 
