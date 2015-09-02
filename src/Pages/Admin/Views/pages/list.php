@@ -182,7 +182,7 @@ jQuery(function(jQuery) {
 		                        		</div>
 		                        		
 		                        		<div class="col-xs-12 col-sm-12 col-md-6">
-		                        			<?php $categories = \DscArrayHelper::getColumn( (array) $item->categories, 'title' ); ?>
+		                        			<?php $categories = \Dsc\ArrayHelper::getColumn( (array) $item->categories, 'title' ); ?>
 		                        			<?php if ($categories) { ?>
 		                        			<div>			                        			
 		                        				<label>Categories:</label>
